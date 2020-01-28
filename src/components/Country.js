@@ -1,23 +1,28 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import {getAllLeagues,getAllSeasons} from '../services/apiService';
-import SideMenu from './SideMenu';
+import {useSelector,useDispatch} from 'react-redux';
+import {getSeasonsAction} from '../store/actions/seasonsActions';
+import {getLeaguesAction} from '../store/actions/leaguesActions';
+
 import Navbar from './Navbar';
 
 function Country(props){
-    const [leagues ,updateLeagues]=useState([]);
-
-    useEffect(()=>{
-
-       getLeagues();
-    },[])
-
-    async function getLeagues(){
+    console.log(props);
+    const leagues =useSelector(state=>state.leagues.leagues);
+    const seasons =useSelector(state=>state.seasons.seasons);
+    const [leagueId,updateleagueId]=useState('');
+    const [season,updateSeason]=useState('');
+    const [filter,updateFilter]=useState('');
+    const dispatch=useDispatch();
    
-     const list=  await getAllLeagues(props.match.params.id);
-     console.log(list)
-     updateLeagues(list);
-     return list;
-    }
+    useEffect(()=>{
+        const loadLeagues=()=>dispatch(getLeaguesAction(props.match.params.id)); 
+        loadLeagues();
+        const loadSeasons=()=>dispatch(getSeasonsAction()); 
+        loadSeasons();
+    },[dispatch,props.match.params.id])
+
+
+   
     return(
         <Fragment>
             <Navbar></Navbar>
@@ -50,22 +55,42 @@ function Country(props){
                         <select className="form-control"
                       
                         name="season"
-                        id="league"
+                        id="season"
                         // onClick={e=>filterByTag(e.target.value)}
                         // onChange={e=>onTagChange(e.target.value)}
                         // value={tag}
                     //    defaultValue={ localStorage.getItem('tag')}
                         >
+                               <option key={"none"}  value={"none"} >---Select a season---</option>
                              {
-                                leagues.map(league=>
+                                seasons.map(season=>
                                   
-                                        <option key={league.name}  value={league.name} >{league.name}</option>
+                                        <option key={season}  value={season}> {season}</option>
                                  
                                 )
                             }                           
                     </select>        
                     </div>
+                    <div className="col-sm-3">
+                        <select className="form-control"
+                      
+                        name="season"
+                        id="season"
+                        // onClick={e=>filterByTag(e.target.value)}
+                        // onChange={e=>onTagChange(e.target.value)}
+                        // value={tag}
+                    //    defaultValue={ localStorage.getItem('tag')}
+                        >
+                               <option key={"none"}  value={"none"} >---Select an option---</option>
+                               <option key={"none"}  value={"none"} >Next fixtures</option>
+                               <option key={"none"}  value={"none"} >Teams</option>
+                         
+                    </select>   
 
+                    </div>
+                    <div className="col-sm-3">
+                    <button type="button" class="btn btn-primary">Search</button>
+                    </div>    
                 </div>
             </form>
         </Fragment>
