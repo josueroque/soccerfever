@@ -4,66 +4,35 @@ import{
     GET_TEAMS_FAILURE,
 } from '../types';
   
+import {getTeams} from '../../services/apiService';
 
-  export  function  getUserAction  (user) {
+export  function  getTeamsAction  (leagueId) {
       return async (dispatch)=>{
-           dispatch(startGetUser());
+           dispatch(startGetTeams());
            try {
-               const user=localStorage.getItem('user');
-               console.log(user);
-               dispatch(getUserSuccess(user));
+            const list=await getTeams(leagueId);
+            dispatch(getTeamsSuccess(list));
                  
            } catch (error) {
                console.log(error);
-               dispatch(getUserFailure());
+               dispatch(getTeamsFailure());
            }
        }
    }
   
-   export  function  saveUserAction  (user) {
-    return async (dispatch)=>{ 
-         dispatch( startSaveUser());
-         try {
-            localStorage.setItem('name',user.name);
-            localStorage.setItem('surname',user.surname);
-            localStorage.setItem('tag',user.tag);
-           
-        //    console.log(user);
-           await  dispatch(saveUserSuccess(user));
-               
-         } catch (error) {
-             console.log(error);
-             dispatch(getUserFailure());
-         }
-     }
- }
+  export const getTeamsSuccess=teams=>({
+      type:GET_TEAMS_SUCCESS,
+      payload:teams
+  });
 
-  export const getUserSuccess=user=>({
-      type:GET_USER_SUCCESS,
-      payload:user
-  })
-
-
-  export const startGetUser = () => ({
-      type: START_GET_USER
-  })
+  export const startGetTeams = (leagueId) => ({
+      type: START_GET_TEAMS
+  });
   
-  export const getUserFailure = () => ({
-      type: GET_USER_FAILURE
-  })
+  export const getTeamsFailure = () => ({
+      type: GET_TEAMS_FAILURE
+  });
   
-export const saveUserSuccess=user=>({
-    type:SAVE_USER_SUCCESS,
-    payload:user
-})
-
-export const startSaveUser = () => ({
-    type: START_SAVE_USER
-})
-
-export const SaveUserFailure = () => ({
-    type: SAVE_USER_FAILURE
-})
 
    
   

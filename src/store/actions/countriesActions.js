@@ -12,7 +12,7 @@ export  function  getCountriesAction  (countries) {
            console.log('hola');
            try {
             const list=await getAllCountries();
-            console.log(list);
+          
             dispatch(getCountriesSuccess(list));
                  
            } catch (error) {

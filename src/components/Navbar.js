@@ -12,23 +12,15 @@ return(
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item active">
                     <Link to={ {pathname: `/`}} > 
-                        <p className="nav-link" >Home </p>
+                        <p className="nav-link" > Home </p>
                     </Link>
                     </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="#">Features</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="#">Pricing</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="#">About</a>
-                </li>
+                    <li className="nav-item ">
+                    {/* <Link to={ {pathname: `/`}} >  */}
+                        <p className="nav-link" > About </p>
+                    {/* </Link> */}
+                    </li>
                 </ul>
-                {/* <form className="form-inline my-2 my-lg-0">
-                    <input className="form-control mr-sm-2" type="text" placeholder="Search" />
-                    <button className="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                </form> */}
             </div>
         </nav>
     )

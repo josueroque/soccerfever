@@ -2,7 +2,39 @@ const API_KEY = '6ec4908ac5mshe0e74eeaacc0751p1d027ejsnc7d9d64fd17b';
 const URL='https://api-football-v1.p.rapidapi.com/v2/';
 const host='api-football-v1.p.rapidapi.com';
 
-export async function getNextFixtures(leagueId){
+export async function getTeams(leagueId){
+  try {
+     
+      const requestUrl =URL +'teams/league/'+leagueId;
+      const response = await fetch(requestUrl
+        ,{
+        method:'GET',
+        headers:{
+        "x-rapidapi-host": host,
+        "x-rapidapi-key": API_KEY}
+      });
+
+      console.log(response);
+      if (!response.ok) {
+        throw new Error('Error fetching teams');
+      }
+
+      //console.log( response);
+      const data = await response.json();
+//        console.log(data.api.countries);
+      const teams=data.api.teams;
+      console.log(teams);
+      return teams; 
+     
+  }
+  catch(error){
+      console.error(error.message);
+      throw error;
+  }
+}
+
+
+export async function getFixtures(leagueId){
   try {
      
       const requestUrl =URL +'fixtures/league/'+leagueId;
@@ -14,7 +46,7 @@ export async function getNextFixtures(leagueId){
         "x-rapidapi-key": API_KEY}
       });
 
-      console.log(response);
+      
       if (!response.ok) {
         throw new Error('Error fetching fixtures');
       }
@@ -22,9 +54,8 @@ export async function getNextFixtures(leagueId){
       //console.log( response);
       const data = await response.json();
 //        console.log(data.api.countries);
-      const seasons=data.api.fixtures;
-      
-      return seasons; 
+      const fixtures=data.api.fixtures;
+      return fixtures; 
      
   }
   catch(error){
@@ -45,7 +76,6 @@ export async function getAllSeasons(){
         "x-rapidapi-key": API_KEY}
       });
 
-      console.log(response);
       if (!response.ok) {
         throw new Error('Error fetching seasons');
       }
@@ -70,7 +100,6 @@ export async function getAllLeagues(country){
   try {
      
       const requestUrl =URL +'leagues/country/'+country+'/2018';
-      console.log(requestUrl);
       const response = await fetch(requestUrl
         ,{
         method:'GET',
@@ -79,16 +108,12 @@ export async function getAllLeagues(country){
         "x-rapidapi-key": API_KEY}
       });
 
-      console.log(response);
       if (!response.ok) {
         throw new Error('Error fetching countries');
       }
 
-      //console.log( response);
       const data = await response.json();
-//        console.log(data.api.countries);
       const leagues=data.api.leagues;
-      console.log(leagues);
       return leagues; 
      
   }
@@ -103,7 +128,6 @@ export async function getAllCountries(){
     try {
        
         const requestUrl =URL +'countries';
-        console.log(requestUrl);
         const response = await fetch(requestUrl
           ,{
           method:'GET',
@@ -112,7 +136,6 @@ export async function getAllCountries(){
           "x-rapidapi-key": API_KEY}
         });
 
-        console.log(response);
         if (!response.ok) {
           throw new Error('Error fetching countries');
         }

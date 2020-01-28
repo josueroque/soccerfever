@@ -8,7 +8,9 @@ img{
     width: 25vw;
 
 }
-
+.nav-link{
+    font-size: 1.5em;
+}
 h1{
     margin-top: 5vh !important; 
     text-align: center;
@@ -22,27 +24,27 @@ h3{
      
     text-align: center;
 }
-
-/* Side menu */
-
-.wrapper {
-    display: flex;
-    width: 100%;
+h3{
+     
+    text-align: center;
+}
+h4{
+     
+    text-align: center;
 }
 
-#sidebar {
-    width: 250px;
-    position: relative;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    z-index: 999;
-    background: lightskyblue;
-    color: #fff;
-    transition: all 0.3s;
+.logo{
+    width: 5vw;
+    height: 5vw;
 }
 
 .row.filter{
     margin-left: 2vw;
     margin-top: 2vw;
+}
+
+.table{
+    margin-left: 2vw;
+    margin-right: 2vw;
+    width: 96vw !important;
 }

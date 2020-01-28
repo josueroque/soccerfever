@@ -1,4 +1,4 @@
-import React, { Fragment,useSelector,useState } from 'react';
+import React, { Fragment } from 'react';
 import Navbar from './Navbar';
 import List from './List';
 import Countries from './Country';
