@@ -24,7 +24,7 @@ import { Link } from "react-router-dom";
                         }
                       } }
                     >  
-                        <div className="col-sm-3 country-button"> 
+                        <div className="col-sm-3 country-button" > 
                       
                           <button class="btn btn-default">
                             <img src={country.flag} alt="" ></img> 

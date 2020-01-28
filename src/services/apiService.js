@@ -14,16 +14,12 @@ export async function getTeams(leagueId){
         "x-rapidapi-key": API_KEY}
       });
 
-      console.log(response);
       if (!response.ok) {
         throw new Error('Error fetching teams');
       }
 
-      //console.log( response);
       const data = await response.json();
-//        console.log(data.api.countries);
       const teams=data.api.teams;
-      console.log(teams);
       return teams; 
      
   }
@@ -32,7 +28,6 @@ export async function getTeams(leagueId){
       throw error;
   }
 }
-
 
 export async function getFixtures(leagueId){
   try {
@@ -51,10 +46,8 @@ export async function getFixtures(leagueId){
         throw new Error('Error fetching fixtures');
       }
 
-      //console.log( response);
       const data = await response.json();
-//        console.log(data.api.countries);
-      const fixtures=data.api.fixtures;
+      const fixtures=data.api.fixtures.slice(0,9);
       return fixtures; 
      
   }
@@ -80,11 +73,8 @@ export async function getAllSeasons(){
         throw new Error('Error fetching seasons');
       }
 
-      //console.log( response);
       const data = await response.json();
-//        console.log(data.api.countries);
       const seasons=data.api.seasons;
-      
       return seasons; 
      
   }
@@ -93,8 +83,6 @@ export async function getAllSeasons(){
       throw error;
   }
 }
-
-
 
 export async function getAllLeagues(country){
   try {

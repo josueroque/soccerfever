@@ -48,3 +48,15 @@ h4{
     margin-right: 2vw;
     width: 96vw !important;
 }
+
+@media (max-width:480px) {
+    img{
+        margin-left: 1.5vw;
+        margin-right: 1.5vw;
+        margin-top: 2vh;
+        height: 36vh;
+        width: 75vw;
+        
+    
+    }
+}

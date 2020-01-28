@@ -42,7 +42,7 @@ function Country(props){
             }}             
             >
                 <br/>
-                <h2>Select the filters of your search </h2>    
+                <h2>Select filters  </h2>    
                 <div className="row form-group filter">
                     <div className="col-sm-3">
                         <select className="form-control"
